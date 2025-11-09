@@ -22,9 +22,10 @@ def get_json(file):
         else:
             return "404 Not Found"
     except Exception as e:
-        raise
+        return e
     
 
 if __name__ == '__main__':
     app.run(port=80)
+
 
