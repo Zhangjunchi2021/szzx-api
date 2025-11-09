@@ -22,9 +22,9 @@ def check_first_run():
     import os
     
     if "page0.json" in os.listdir(os.getcwd()):
-        return True
-    else:
         return False
+    else:
+        return True
         
 
 def main():
