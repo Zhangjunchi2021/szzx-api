@@ -37,8 +37,9 @@ class get_analyze_json():
 
         soup = bs4.BeautifulSoup(self.content, "html.parser")
         news = soup.find("ul", attrs={"class":"listsbox"}).find_all("a")
-
+        times = soup.find("ul", attrs={"class":"listsbox"}).find_all("span")
         self.news = news
+        self.times = times
                 
 
     def json_dumps(self):
@@ -50,7 +51,8 @@ class get_analyze_json():
         for data in self.news:
             node = {"id":Id,
                     "href":f"{self.root_url}{data['href']}",
-                    "text":data.get_text()}
+                    "text":data.get_text(),
+                    "time":self.times[Id].get_text()}
             nodes.append(node)
             Id += 1
         
@@ -68,6 +70,7 @@ def main():
     
     szzx = get_analyze_json(root_url, direction, params)
     print(szzx.json)
+    #print(szzx.times)
 
 
 
